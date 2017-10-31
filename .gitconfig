@@ -1,0 +1,24 @@
+[user]
+	name = Anton Geraschenko
+	email = geraschenko@gmail.com
+[core]
+	autocrlf = false
+	safecrlf = true
+	excludesfile = ~/.gitignore_global
+[branch]
+	autosetuprebase = always
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	type = cat-file -t
+	dump = cat-file -p
+	hist = log --pretty=format:'%h %ad |%C(yellow)%d%Creset %s [%an]' --graph --date=short
+[status]
+	showUntrackedFiles = no
+[credential]
+	helper = cache --timeout=3600
+[merge]
+	conflictstyle = diff3
+	tool = vimdiff

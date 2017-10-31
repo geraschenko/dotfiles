@@ -1,0 +1,9 @@
+:set syntax=c
+:set tabstop=2
+:map r :run<CR>
+:map c :continue<CR>
+:map f :finish<CR>
+:map m :next<CR>
+:map s :step<CR>
+:map u :up<CR>
+:map d :down<CR>
