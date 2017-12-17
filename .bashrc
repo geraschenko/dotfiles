@@ -4,15 +4,19 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 fi
 setPrompt() {
 	local status=$?
-	local chrt="${debian_chroot:+($debian_chroot)}"
 	local red="\[\033[01;31m\]"
 	local green="\[\033[01;32m\]"
 	local blue="\[\033[01;34m\]"
 	local none="\[\033[00m\]"
+	local chrt="${debian_chroot:+($debian_chroot)}"
+	local virt_env=""
+	if [ -n "$VIRTUAL_ENV" ]; then
+		virt_env=" [$(basename $VIRTUAL_ENV)]"
+	fi
 	if [ $status = 0 ]; then
-		PS1="${chrt}${green}\u@\h${none}:${blue}\w${none}$(__git_ps1)\n\$ "
+		PS1="${chrt}${green}\u@\h${none}:${blue}\w${none}$(__git_ps1)${virt_env}\n\$ "
 	else
-		PS1="${chrt}${red}\u@\h:\w${none} (exit code ${status})$(__git_ps1)\n\$ "
+		PS1="${chrt}${red}\u@\h:\w${none} (exit code ${status})$(__git_ps1)${virt_env}\n\$ "
 	fi
 }
 export PROMPT_COMMAND="setPrompt"
